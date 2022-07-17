@@ -1,0 +1,51 @@
+<div class="container">
+    <h4 align="center" style="color:aliceblue">Loan Records</h4>&nbsp;
+    <button class=" btn btn-warning" id="back" (click)="callBack()">Back</button><br>
+<table class="table table-stripped table-dark">
+    <tbody>
+        <th>Loan Id</th>
+        <th>Student Id</th>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Loan Amount</th>
+        <th>Rate Of Interest</th>
+        <th>Tenure</th>        
+        <th>Total Amount To Be Paid</th>        
+        <!-- <th>Processing Fees</th>        
+        <th>Total Interest</th>        
+        <th>Sanction Date</th>         
+        <th>Emi Id</th>        
+        <th>Emi Amount Monthly</th>        
+        <th>Next Emi Due Date</th>        
+        <th>Previous Emi Status</th>         -->
+        <th colspan="2">Action</th>
+
+    <tr *ngFor="let loan of loanList">
+            <td>{{loan.loanId}}</td>
+            <td>{{loan.studentId}}</td>
+            <td>{{loan.studentName}}</td>
+            <td>{{loan.email}}</td>
+            <td>{{loan.loanAmount}}</td>
+            <td>{{loan.rateOfInterest}}</td>
+            <td>{{loan.tenure}}</td>
+            <td>{{loan.totalAmountToBePaid}}</td>
+            <!-- <td>{{loan.processingFees}}</td>
+            <td>{{loan.totalInterest}}</td>
+            <td>{{loan.sanctionDate}}</td> 
+            <td>{{loan.emidetails.emiId}}</td>
+            <td>{{loan.emidetails.emiAmountMonthly}}</td>
+            <td>{{loan.emidetails.nextEmiDueDate}}</td>
+            <td>{{loan.emidetails.previousEmiStatus}}</td> -->
+          <td><a [routerLink]="['emiDetails',loan.loanId]">Show Emi details</a>
+        </td>
+        <td><a class="btn" (click)="deleteData(loan.loanId)">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td> 
+        </tr>
+    </tbody>
+    </table>
+    </div>
+    
+    <router-outlet></router-outlet>
+    

@@ -1,0 +1,143 @@
+<div class="container">
+    <h4 align="center" style="color:aliceblue">Course Records</h4><br>
+    <div class="col-md-12">
+
+    <h4 align="center">Course Details</h4>&nbsp;
+    <button class="abc btn btn-success"(click)="callBack()">Back</button><br>
+    </div>
+<table class="table table-dark table-striped">
+    <tbody>
+        <tr>
+        <td>Course Id</td>
+        <td>Course Name</td>
+        <td>Course Type</td>
+        <td>College</td>
+        <td>University</td>
+        <td>Course Duration</td>
+        <td>College address</td>        
+    </tr>
+    <tr >
+            <td>{{studentObj.course.courseId}}</td>
+            <td>{{studentObj.course.courseName}}</td>
+            <td>{{studentObj.course.courseType}}</td>
+            <td>{{studentObj.course.college}}</td>
+            <td>{{studentObj.course.university}}</td>
+            <td>{{studentObj.course.courseDuration}}</td>
+            <td>{{studentObj.course.collegeAddress}}</td>
+           <!-- <td>
+            <a class="btn" [routerLink]="['updateCourse']" [state]="studentObj">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
+        <td><a class="btn" (click)="deleteData(studentObj.course.courseId)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>  -->
+        </tr>
+
+    </tbody>
+    </table>
+    <h4 align="center">Correspondence Details</h4>
+    <table class="table table-dark table-striped">
+        <tbody>
+            <tr>
+            <td>Address ID</td>
+            <td>City Name</td>
+            <td>Area name</td>
+            <td>Pincode</td>
+              
+        </tr>
+        <tr >
+                <td>{{studentObj.address.addressId}}</td>
+                <td>{{studentObj.address.cityName}}</td>
+                <td>{{studentObj.address.areaName}}</td>
+                <td>{{studentObj.address.pincode}}</td>
+               
+               <!-- <td>
+                <a class="btn" [routerLink]="['updateCourse']" [state]="studentObj">
+                <i class="fa fa-edit"></i>
+              </a>
+            </td>
+            <td><a class="btn" (click)="deleteData(studentObj.course.courseId)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>  -->
+            </tr>
+    
+        </tbody>
+        </table>
+            <div>
+                <button class="btn btn-primary" (click)="showDocuments()">Get Documents</button>
+            </div>
+
+            <h4 align="center">Documents Details</h4>
+            <table class="table table-striped table" >
+                <thead>
+                    <th>Document Id</th>
+                    <th>Adhar Card</th>
+                    <th>Pan Card</th>
+                    <th>Address proof</th>
+                    <th>collegeBonafied</th>
+                    <th>Signature</th>
+                    <th>Marksheet</th>
+                    <th>Photo</th>
+                </thead>
+                <tbody *ngIf=retrievedDoc>
+                    <tr >
+                        <td>{{studentObj.documents.documentId}}</td>
+                    
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.adharcard" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.pancard" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.addressProof" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.collegeBonafied" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.signature" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.marksheet" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.documents.photo" height="100"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 align="center">Guarantor Details</h4>
+            <table class="table table-striped table" >
+                <thead>
+                    <th>Guarentor Id</th>
+                    <th>Guarentor Name</th>
+                    <th>Profession</th>
+                    <th>Income Proof</th>
+                    <th>Adharcard</th>
+                    <th>Pancard</th>
+                    <th>Bank Statement</th>
+                    <th>Guarentor Address</th>
+                </thead>
+                <tbody *ngIf=retrievedDoc>
+                    <tr >
+                        <td>{{studentObj.guarentor.guarentorId}}</td>
+                        <td>{{studentObj.guarentor.guarentorName}}</td>
+                        <td>{{studentObj.guarentor.profession}}</td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.guarentor.incomeProof" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.guarentor.adharcard" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.guarentor.pancard" height="100"></td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.guarentor.bankStatement" height="100"></td>
+                        <td>{{studentObj.guarentor.guarentorAddress}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 align="center">Property Details</h4>
+            <table class="table table-striped table" >
+                <thead>
+                    <th>Mortgage Id</th>
+                    <th>Property Value</th>
+                    <th>Property Proof</th>
+                    <th>Property Type</th>
+                    <th>Loan On Property</th>
+                </thead>
+                <tbody *ngIf=retrievedDoc>
+                    <tr >
+                        <td>{{studentObj.mortgage.mid}}</td>
+                        <td>{{studentObj.mortgage.mpropertyValue}}</td>
+                        <td><img [src] ="'data:image/jpg;base64,'+studentObj.mortgage.mpropertyProof" height="100"></td>
+                        <td>{{studentObj.mortgage.mpropertyType}}</td>
+                        <td>{{studentObj.mortgage.mloanonProperty}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>

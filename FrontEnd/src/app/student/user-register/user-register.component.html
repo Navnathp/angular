@@ -1,0 +1,47 @@
+<body>
+    <div class="container">
+    <form align="center" [formGroup]="userRegisterForm" (ngSubmit)="submitUser()"><br>
+        
+        <h3>Student Details</h3><br>
+        <div class="row mb-4">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="studentName" class="form-control"  placeholder="Student Name">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3"  class="col-sm-2 col-form-label">Dob</label>
+          <div class="col-sm-10">
+            <input type="date" formControlName="dob" class="form-control" placeholder="DOB">
+          </div>
+        </div>
+        <div class="row mb-4">
+            <label  class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10">
+              <input type="radio" class="form-check-input" formControlName="gender" value="male"> Male&nbsp;&nbsp;
+              <input type="radio" class="form-check-input" formControlName="gender"  value="female"> Female&nbsp;&nbsp;
+              <input type="radio" class="form-check-input" formControlName="gender" value="other"> Other
+            </div>
+          </div>
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" formControlName="email" class="form-control" placeholder="Email Id">
+            </div>
+          </div>
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Mobile No</label>
+            <div class="col-sm-10">
+              <input type="text" formControlName="mobNo" class="form-control" placeholder="Mobile No">
+            </div>
+          </div>
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" formControlName="password" class="form-control" placeholder="Password">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        </div>
+        </body>

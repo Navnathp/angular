@@ -1,0 +1,356 @@
+<body>
+  <div class="container">
+  <form align="center" [formGroup]="studentRegisterForm" (ngSubmit)="submit()"><br>
+      <div *ngIf="step==1">
+      <h3>Student Details</h3><br>
+      <div class="row mb-4">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" formControlName="studentName" class="form-control"  placeholder="Student Name">
+        </div>
+      </div>
+      <div class="row mb-4">
+        <label for="inputPassword3"  class="col-sm-2 col-form-label">Dob</label>
+        <div class="col-sm-10">
+          <input type="date" formControlName="dob" [(ngModel)]="dob" (ngModelChange)="calculateAge($event)"  class="form-control" placeholder="DOB">
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <label for="inputPassword3"  class="col-sm-2 col-form-label">Age</label>
+        <div class="col-sm-10">
+          <input type="text" readonly [(ngModel)]="age"  [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Age">
+        </div>
+      </div>
+      <!-- <button  class="btn btn-success" (click)="CalculateAge()">show age</button> -->
+
+      <div class="row mb-4">
+          <label  class="col-sm-2 col-form-label">Gender</label>
+          <div class="col-sm-10">
+            <input type="radio" class="form-check-input" formControlName="gender" value="male"> Male&nbsp;&nbsp;
+            <input type="radio" class="form-check-input" formControlName="gender"  value="female"> Female&nbsp;&nbsp;
+            <input type="radio" class="form-check-input" formControlName="gender" value="other"> Other
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" formControlName="email" class="form-control" placeholder="Email Id">
+            <div *ngIf="studentRegisterForm.controls['email'].touched && studentRegisterForm.controls['email'].invalid">
+        <span *ngIf="studentRegisterForm.controls['email'].hasError('required')" style="color:red">Email is Required</span>
+ <span *ngIf="studentRegisterForm.controls['email'].hasError('pattern')" style="color: 
+ red"> Enter in the format of 'abc@gmail.com'</span>
+  </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Mobile No</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="mobNo" class="form-control" placeholder="Mobile No">
+            <div *ngIf="studentRegisterForm.controls['mobNo'].touched && 
+            studentRegisterForm.controls['mobNo'].invalid">
+            <span 
+           *ngIf="studentRegisterForm.controls['mobNo'].hasError('required')" 
+           style="color: red">Mobile No is Required</span>
+           <span *ngIf="studentRegisterForm.controls['mobNo'].hasError('pattern')" style="color: 
+           red">Minimum 10 Digits Number Required</span><br>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" formControlName="password" class="form-control" placeholder="Password">
+          </div>
+        </div>
+      </div>
+  <div *ngIf="step==2" >
+    <div formGroupName="course">
+      <h3>Course Details</h3><br>
+      <div class="row mb-4">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Course Name</label>
+        <div class="col-sm-10">
+          <input type="text" formControlName="courseName" class="form-control"  placeholder="Course Name">
+        </div>
+      </div>
+      <div class="row mb-4">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Course Type</label>
+        <div class="col-sm-10">
+          <input type="text" formControlName="courseType" class="form-control" placeholder="Course Type">
+        </div>
+      </div>
+      <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">College</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="college" class="form-control" placeholder="College Name">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">University</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="university" class="form-control" placeholder="University">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Duration</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="courseDuration" class="form-control" placeholder="Course Duration">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">College Address</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="collegeAddress" class="form-control" placeholder="College Address">
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div *ngIf="step==3" >
+        <div formGroupName="address">
+        <h3>Correspondence Details</h3><br>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Area Name</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="areaName" class="form-control" placeholder="Area Name">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">City</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="cityName" class="form-control" placeholder="City">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Pincode</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="pincode" class="form-control" placeholder="Pincode">
+          </div>
+        </div>
+        </div>
+      </div>
+        <div  formGroupName="documents">
+        <div *ngIf="step==4">
+          <h3> Requierd Documents</h3><br>
+          
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Aadhar Card</label>
+            <div class="col-sm-10">
+              <input type="file" (change)="onselectedFile1($event)"  class="form-control" placeholder="Aadhar Card">
+            </div>
+          </div>
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Pancard</label>
+            <div class="col-sm-10">
+              <input type="file" (change)="onselectedFile2($event)"  class="form-control" placeholder="Pancard">
+            </div>
+          </div>
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Address Proof</label>
+            <div class="col-sm-10">
+              <input type="file" (change)="onselectedFile3($event)"  class="form-control" placeholder="Address Proof">
+            </div>
+          </div>
+          <div class="row mb-4">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">College Bonafied</label>
+              <div class="col-sm-10">
+                <input type="file" (change)="onselectedFile4($event)"  class="form-control" placeholder="College Bonafied">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Signature</label>
+              <div class="col-sm-10">
+                <input type="file" (change)="onselectedFile5($event)"  class="form-control" placeholder="Signature">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Marksheet</label>
+              <div class="col-sm-10">
+                <input type="file" (change)="onselectedFile6($event)"  class="form-control" placeholder="Marksheet">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Photo</label>
+              <div class="col-sm-10">
+                <input type="file" (change)="onselectedFile7($event)"  class="form-control" placeholder="Photo">
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="step==5" >
+            <div formGroupName="bank">
+              <h3> Bank Account Details</h3><br>
+              <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Bank Name</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="bankName" class="form-control" placeholder="Bank Name">
+                </div>
+              </div>
+              <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">IFSC Code</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="ifscCode" class="form-control" placeholder="IFSC Code">
+                </div>
+              </div>
+              <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">MICR Code</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="micrCode" class="form-control" placeholder="MICR Code">
+                </div>
+              </div>
+              <div class="row mb-4">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Contact No</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="bankContactNo" class="form-control" placeholder="Contact No">
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Bank Email</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="bankEmail" class="form-control" placeholder="Bank Email">
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" formControlName="bankAddress" class="form-control" placeholder="Bank Address">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+              <div *ngIf="step==6" >
+                <div formGroupName="guarentor" >
+                  <h3> Guarantor Details</h3><br>
+                  
+                  <div class="row mb-4">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" formControlName="guarentorName" class="form-control" placeholder="Guarentor Name">
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">profession</label>
+                    <div class="col-sm-10">
+                      <input type="text" formControlName="profession" class="form-control" placeholder="Profession">
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Income Proof</label>
+                    <div class="col-sm-10">
+                      <input type="file" (change)="onselectedFile8($event)"  class="form-control" placeholder="Incoe Proof">
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">Aadhar Card</label>
+                      <div class="col-sm-10">
+                        <input type="file" (change)="onselectedFile9($event)"  class="form-control" placeholder="Aadhar Card">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">Pancard</label>
+                      <div class="col-sm-10">
+                        <input type="file" (change)="onselectedFile10($event)"  class="form-control" placeholder="Pancard">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">Bank Statement</label>
+                      <div class="col-sm-10">
+                        <input type="file" (change)="onselectedFile11($event)"  class="form-control" placeholder="Bank Statement">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                      <div class="col-sm-10">
+                        <input type="text" formControlName="guarentorAddress" class="form-control" placeholder="Guarentor Address">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <div *ngIf="step==7">
+                    <div formGroupName="mortgage">
+                      <h3>Mortgage Details</h3><br>
+                      <div class="row mb-4">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Property Value</label>
+                        <div class="col-sm-10">
+                          <input type="text" formControlName="mpropertyValue" class="form-control" placeholder="Property Value">
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Property Proof</label>
+                        <div class="col-sm-10">
+                          <input type="file" (change)="onselectedFile12($event)"  class="form-control" placeholder="Property Proof">
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Property Type</label>
+                        <div class="col-sm-10">
+                          <input type="text" formControlName="mpropertyType" class="form-control" placeholder="Property Type">
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Loan On Property</label>
+                          <div class="col-sm-10">
+                            <input type="text" formControlName="mloanonProperty" class="form-control" placeholder="Loan On Property">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      <a class="btn btn-warning" *ngIf="step!=1" (click)="previous()">Previous</a>&nbsp;&nbsp;
+      <button type="submit" class="btn btn-dark" *ngIf="step!=7">Next</button>&nbsp;&nbsp;
+      <button type="submit" class="btn btn-success" *ngIf="step==7">Save</button>
+    </form>
+  </div>
+  </body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+  </div>

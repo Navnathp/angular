@@ -1,0 +1,34 @@
+
+<div class="container">
+    <h4 align="center" style="color:aliceblue">Loan Records</h4>&nbsp;
+    <button class="abc btn btn-warning" (click)="callBack()">Back</button><br>
+<table class="table table-stripped table-dark">
+    <tbody>
+        <th>Student Id</th>
+        <th>Student Name</th>
+        <th>Dob</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Mobile No</th>
+        <th>Password</th>        
+        <th colspan="2">Action</th>
+
+    <tr *ngFor="let st of studentList">
+            <td>{{st.studentId}}</td>
+            <td>{{st.studentName}}</td>
+            <td>{{st.dob}}</td>
+            <td>{{st.gender}}</td>
+            <td>{{st.email}}</td>
+            <td>{{st.mobNo}}</td>
+            <td>{{st.password}}</td>
+          <td><a [routerLink]="['viewByManager',st.studentId]">Show details</a>
+        </td>
+        <td><a class="btn" (click)="deleteData(st.studentId)">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td> 
+        </tr>
+    </tbody>
+    </table>
+    </div>
+<router-outlet></router-outlet>

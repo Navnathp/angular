@@ -1,0 +1,10 @@
+
+<div class="form-group">
+    <br>
+    <h1 style="color: crimson"><b>EMI Calculator</b></h1><br>
+Loan Amount in ₹:<br><input class="form-control" type="number" [(ngModel)]="loanAmount" placeholder="Loan Amount" /><br>
+Tenure in Months:<br><input class="form-control" type="number" [(ngModel)]="tenure" placeholder="Tenure in Months" /><br>
+Interest Rate %:<br><input class="form-control" type="number" [(ngModel)]="interest" placeholder="Interest in Months" /><br><br>
+<button class="btn btn-danger" (click)="cal()">Calculate</button><br><br>
+<h3>EMI ₹ : {{ emi }} / Month</h3>
+</div>

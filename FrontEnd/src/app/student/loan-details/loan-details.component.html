@@ -1,0 +1,106 @@
+<body>
+    <div class="container">
+    <form align="center" [formGroup]="loanDetailsForm" (ngSubmit)="submiLoanDetails()"><br>
+        
+        <h3>Loan Details</h3><br>
+        <div class="row mb-4">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Student Id</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="studentId" class="form-control"  placeholder="Student Id">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Student Name</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="studentName" class="form-control"  placeholder="Student Name">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="email" class="form-control"  placeholder="Email">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Loan Amount ₹</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="loanAmount" [(ngModel)]="loanAmount" (ngModelChange)="calculateInterest($event)" class="form-control"  placeholder="Loan Amount">
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <label for="inputPassword3"  class="col-sm-2 col-form-label">Rate Of Interest %</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="rateOfInterest"  [(ngModel)]="rateOfInterest" (ngModelChange)="calculateInterest($event)" class="form-control" placeholder="Rate Of Interest">
+          </div>
+        </div>
+
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Tenure</label>
+            <div class="col-sm-10">
+              <input type="text" formControlName="tenure" [(ngModel)]="tenure" (ngModelChange)="calculateInterest($event)" class="form-control" placeholder="Tenure">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Total Amount Payable ₹</label>
+            <div class="col-sm-10">
+              <input type="text" formControlName="totalAmountToBePaid" [(ngModel)]="totalAmountToBePaid"  class="form-control" placeholder="Total Amount To Be Paid">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Processing Fees ₹</label>
+            <div class="col-sm-10">
+              <input type="text" formControlName="processingFees" class="form-control" placeholder="Processing Fees">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Total Interest ₹</label>
+            <div class="col-sm-10">
+              <input type="text" formControlName="totalInterest" [(ngModel)]="totalInterest" class="form-control" placeholder="Total Interest">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Sanction  Date</label>
+            <div class="col-sm-10">
+              <input type="date" formControlName="sanctionDate" class="form-control" placeholder="Sanction Date">
+            </div>
+          </div>
+
+          <div formGroupName="emidetails">
+            
+            <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Emi Amount ₹</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="emiAmountMonthly" [(ngModel)]="emiAmountMonthly" class="form-control" placeholder="Emi Amount Monthly">
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Next Emi Due Date</label>
+                <div class="col-sm-10">
+                  <input type="date" formControlName="nextEmiDueDate" class="form-control" placeholder="Next Emi Due Date">
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Previous Emi Status</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="previousEmiStatus" class="form-control" placeholder="Previous Emi Status">
+                </div>
+              </div>
+
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        </div>
+        </body>
+
+        <router-outlet></router-outlet>
+
